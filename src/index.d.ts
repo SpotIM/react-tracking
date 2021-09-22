@@ -17,6 +17,10 @@ export interface TrackingProp<P = {}> {
   getTrackingData(): {};
 }
 
+export interface UseTrackingProp<P = {}> extends TrackingProp<P> {
+  Track: React.FC;
+}
+
 type Falsy = false | null | undefined | '';
 
 export interface Options<T> {
@@ -87,7 +91,7 @@ export const ReactTrackingContext: TrackingContext;
 export function useTracking<K extends keyof T, T = any, P = {}, S = any>(
   trackingInfo?: TrackingInfo<Pick<T, K>, P, S>,
   options?: Options<Partial<T>>
-): TrackingProp<P>;
+): UseTrackingProp<P>;
 
 /**
  * This is the type of the `track` function. It’s declared as an interface so that consumers can extend the typing and
